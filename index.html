@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1220">
+<title>Mera Hisab Pro — Preview</title>
+<style>
+:root{--bg:#091120;--panel:#121e32;--panel2:#17263d;--border:#293750;--muted:#9aa9bf;--text:#f4f7ff;--blue:#3291ff;--green:#39d9a0;--red:#ff7895;--yellow:#ffc247;--purple:#b69cff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding-bottom:90px}
+button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}.wrap{max-width:900px;margin:auto;padding:18px 16px 28px}
+.topline{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:4px 0 16px}.brand{font-weight:800;font-size:21px;letter-spacing:-.4px}.sub{color:var(--muted);font-size:12px;margin-top:3px}.pill{border:1px solid var(--border);border-radius:999px;padding:7px 10px;color:#b9c8dc;font-size:12px}
+.balance{background:linear-gradient(135deg,#17374f,#10524b);border:1px solid #2b5b68;border-radius:28px;padding:22px;margin-bottom:18px;box-shadow:0 12px 32px #0002}.eyebrow{font-size:13px;color:#c3d5e7}.bigmoney{font-size:38px;font-weight:850;letter-spacing:-1.2px;margin:3px 0 18px}.balance-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.balance-grid .num{font-size:20px;font-weight:800;margin-top:5px}.muted{color:var(--muted)}.green{color:var(--green)}.red{color:var(--red)}.yellow{color:var(--yellow)}.purple{color:var(--purple)}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:24px}.stat{background:linear-gradient(145deg,#142239,#111c2f);border:1px solid var(--border);border-radius:25px;padding:18px 20px;min-height:112px}.stat .label{color:#a9b8cc;font-size:14px}.stat .num{font-size:27px;font-weight:850;margin-top:7px}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:20px 0 12px}.section-head h2{font-size:21px;margin:0}.hint{font-size:13px;color:var(--muted)}
+.quick{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.quick button{background:var(--panel2);border:1px solid var(--border);border-radius:22px;padding:16px 8px;color:var(--text);min-height:112px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}.quick button:active,.nav button:active{transform:scale(.98)}.emoji{font-size:29px}.quick span:last-child{font-size:13px}
+.panel{background:linear-gradient(145deg,#142239,#101a2c);border:1px solid var(--border);border-radius:25px;padding:17px;margin-top:20px}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}.panel h2{font-size:21px;margin:0}.primary{background:var(--blue);color:white;border-radius:14px;padding:11px 15px;font-weight:750}.secondary{background:#20304a;color:#dce7f7;border:1px solid #35445e;border-radius:12px;padding:10px 13px}.danger{background:#492333;color:#ffd7df;border-radius:12px;padding:9px 12px}.field{width:100%;background:#0c1526;border:1px solid #2b3a55;color:var(--text);border-radius:13px;padding:13px;outline:none;min-width:0}.field:focus{border-color:#438ff4;box-shadow:0 0 0 2px #438ff422}.filters{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:9px;margin:12px 0}.row{display:flex;gap:9px;align-items:center}.row>*{min-width:0}.transaction{border:1px solid #273650;background:#0e192b;border-radius:16px;padding:13px;margin-top:9px;display:flex;align-items:center;gap:12px}.txicon{width:43px;height:43px;flex-shrink:0;display:grid;place-items:center;background:#1c2d45;border-radius:14px;font-size:21px}.txmain{flex:1;min-width:0}.txname{font-weight:750;overflow-wrap:anywhere}.txmeta{font-size:12px;color:var(--muted);margin-top:4px}.txamount{font-size:16px;font-weight:850;white-space:nowrap}.smallbtn{background:transparent;color:#9fb0c7;padding:5px;font-size:13px}.empty{padding:28px 10px;text-align:center;color:var(--muted)}
+.screen{display:none}.screen.active{display:block}.nav{position:fixed;bottom:0;left:0;right:0;background:#0b1222f5;border-top:1px solid #26334a;display:grid;grid-template-columns:repeat(4,1fr);padding:8px max(10px,calc((100vw - 880px)/2)) calc(8px + env(safe-area-inset-bottom));z-index:10;backdrop-filter:blur(14px)}.nav button{background:transparent;color:#8d9bb0;border-radius:18px;padding:8px 4px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;font-size:12px}.nav button b{font-size:22px;font-weight:500}.nav button.active{background:#1a2c48;color:#8bbaff;font-weight:800}.nav button.active b{font-weight:800}
+.reportgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.reportbox{background:#0e192b;border:1px solid var(--border);padding:15px;border-radius:17px}.reportbox .rlabel{font-size:13px;color:var(--muted)}.reportbox .rnum{font-size:22px;font-weight:850;margin-top:7px}.bartrack{height:9px;background:#25334a;border-radius:99px;overflow:hidden;margin-top:8px}.barfill{height:100%;border-radius:99px;background:var(--green)}
+.notice{font-size:12px;color:#9fb0c7;line-height:1.5;margin-top:12px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.formfield label{display:block;font-size:13px;color:#aebdd0;margin:0 0 6px}.formfield.full{grid-column:1/-1}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.hidden{display:none!important}
+.modalback{position:fixed;inset:0;background:#020611c9;display:none;align-items:flex-end;justify-content:center;z-index:30;padding:12px}.modalback.open{display:flex}.modal{width:100%;max-width:620px;max-height:92vh;overflow:auto;background:#111d31;border:1px solid #35435a;border-radius:25px;padding:20px;box-shadow:0 24px 70px #0008}.modal h2{margin:0 0 16px;font-size:22px}.close{background:#26344a;color:white;border-radius:10px;padding:7px 11px}.modalhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}
+.toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);background:#1d3a36;border:1px solid #3d7d6d;color:#d7fff1;padding:12px 16px;border-radius:14px;z-index:50;display:none;max-width:90vw;text-align:center}
+@media(min-width:720px){.wrap{padding-top:25px}.quick{grid-template-columns:repeat(6,minmax(0,1fr))}.quick button{min-height:125px}.balance{padding:28px}.stats{grid-template-columns:repeat(4,minmax(0,1fr))}.stat{padding:17px}.stat .num{font-size:25px}.modalback{align-items:center}}
+@media(max-width:430px){.wrap{padding-left:12px;padding-right:12px}.balance{padding:18px;border-radius:23px}.bigmoney{font-size:34px}.balance-grid{gap:6px}.balance-grid .num{font-size:17px}.balance-grid .eyebrow{font-size:11px}.stat{padding:15px;min-height:102px}.stat .num{font-size:24px}.quick{gap:8px}.quick button{border-radius:18px;padding:12px 4px;min-height:100px}.quick span:last-child{font-size:12px}.filters{grid-template-columns:1fr 1fr}.filters .searchwrap{grid-column:1/-1}.panel{padding:13px}.formgrid{grid-template-columns:1fr 1fr}.txamount{font-size:14px}}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+<div class="wrap">
+<header class="topline"><div><div class="brand">💠 Mera Hisab Pro</div><div class="sub">Tumhara personal hisaab • Offline preview</div></div><span class="pill">PREVIEW v1</span></header>
+
+<section class="screen active" id="homeScreen">
+  <div class="balance">
+    <div class="eyebrow">Total Balance</div><div class="bigmoney" id="totalBalance">₹0</div>
+    <div class="balance-grid">
+      <div><div class="eyebrow">Aamdani</div><div class="num" id="totalIncome">₹0</div></div>
+      <div><div class="eyebrow">Kharcha</div><div class="num" id="totalExpense">₹0</div></div>
+      <div><div class="eyebrow">Udhar baaki</div><div class="num yellow" id="totalDebt">₹0</div></div>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="label">Aaj ki income</div><div class="num green" id="todayIncome">₹0</div></div>
+    <div class="stat"><div class="label">Aaj ka kharcha</div><div class="num red" id="todayExpense">₹0</div></div>
+    <div class="stat"><div class="label">Mujhe lene hain</div><div class="num yellow" id="toReceive">₹0</div></div>
+    <div class="stat"><div class="label">Mujhe dene hain</div><div class="num yellow" id="toPay">₹0</div></div>
+  </div>
+  <div class="section-head"><h2>Quick Add</h2><span class="hint">Ek tap mein entry</span></div>
+  <div class="quick">
+    <button data-add="income"><span class="emoji">💰</span><span>Income</span></button>
+    <button data-add="expense"><span class="emoji">🛍️</span><span>Kharcha</span></button>
+    <button data-add="game"><span class="emoji">🎮</span><span>Game Earning</span></button>
+    <button data-add="borrow"><span class="emoji">🤝</span><span>Udhar lena</span></button>
+    <button data-add="lend"><span class="emoji">💸</span><span>Udhar dena</span></button>
+    <button data-add="repay"><span class="emoji">🔄</span><span>Udhar chukana</span></button>
+  </div>
+  <div class="panel">
+    <div class="panel-head"><h2>Transactions</h2><button class="primary" id="homeAdd">＋ Add</button></div>
+    <div class="filters">
+      <div class="searchwrap"><input class="field" id="homeSearch" placeholder="🔎 Naam, note ya amount search" autocomplete="off"></div>
+      <select class="field" id="homeType"><option value="all">Sabhi types</option><option value="income">Income</option><option value="expense">Kharcha</option><option value="game">Game earning</option><option value="borrow">Udhar lena</option><option value="lend">Udhar dena</option><option value="repay">Udhar chukana</option></select>
+      <select class="field" id="homeStatus"><option value="all">Sabhi status</option><option value="paid">Paid</option><option value="partial">Partial</option><option value="pending">Pending</option></select>
+    </div>
+    <div id="homeTransactions"></div>
+  </div>
+</section>
+
+<section class="screen" id="hisabScreen">
+  <div class="section-head"><h2>📒 Poora Hisab</h2><button class="primary" id="hisabAdd">＋ Add</button></div>
+  <div class="panel" style="margin-top:0">
+    <input class="field" id="hisabSearch" placeholder="🔎 Naam, phone, note ya amount se search">
+    <div class="filters"><select class="field" id="hisabType"><option value="all">Sabhi types</option><option value="income">Income</option><option value="expense">Kharcha</option><option value="game">Game earning</option><option value="borrow">Udhar lena</option><option value="lend">Udhar dena</option><option value="repay">Udhar chukana</option></select><select class="field" id="hisabStatus"><option value="all">Sabhi status</option><option value="paid">Paid</option><option value="partial">Partial</option><option value="pending">Pending</option></select><input class="field" id="fromDate" type="date" aria-label="Start date"><input class="field" id="toDate" type="date" aria-label="End date"></div>
+    <div id="hisabTransactions"></div>
+  </div>
+</section>
+
+<section class="screen" id="reportScreen">
+  <div class="section-head"><h2>📊 Report</h2><span class="hint">Tumhara summary</span></div>
+  <div class="panel" style="margin-top:0">
+    <div class="formgrid">
+      <div class="formfield"><label>Report shuru</label><input class="field" id="reportFrom" type="date"></div>
+      <div class="formfield"><label>Report aakhir</label><input class="field" id="reportTo" type="date"></div>
+    </div>
+    <div class="actions"><button class="secondary" id="reportMonth">Is mahine ki report</button><button class="secondary" id="reportAll">Saara hisaab</button></div>
+  </div>
+  <div class="reportgrid" id="reportCards" style="margin-top:12px"></div>
+  <div class="panel"><div class="panel-head"><h2>Game Earning</h2></div><div id="gameReport"></div><div class="notice">Game mein lagaya paisa aur game se mila paisa alag track hota hai. Game ka net result = game earning − game kharcha.</div></div>
+  <div class="panel"><div class="panel-head"><h2>Udhar ki list</h2></div><div id="debtReport"></div></div>
+</section>
+
+<section class="screen" id="backupScreen">
+  <div class="section-head"><h2>💾 Backup & Settings</h2></div>
+  <div class="panel" style="margin-top:0">
+    <h2>Data Backup</h2><p class="muted">Apne hisaab ki JSON file download karo. Baad mein isi file ko import karke data restore kar sakte ho.</p>
+    <div class="actions"><button class="primary" id="exportBtn">⬇ Download Backup</button><button class="secondary" id="importBtn">⬆ Import Backup</button><input type="file" id="importFile" accept=".json,application/json" class="hidden"></div>
+    <div class="notice">Yeh preview data isi browser mein save hota hai. Browser data clear karne ya app uninstall karne se pehle backup download kar lena. Backup file ko safe jagah rakhna.</div>
+  </div>
+  <div class="panel">
+    <h2>Data tools</h2><p class="muted">Test entries hataane ya demo ko reset karne ke liye.</p>
+    <div class="actions"><button class="secondary" id="seedBtn">Demo entries add karo</button><button class="danger" id="clearBtn">Saara data delete</button></div>
+    <div class="notice">Delete karne se pehle backup rakh lo. Delete action confirmation ke baad hi hoga.</div>
+  </div>
+  <div class="panel"><h2>App ke baare mein</h2><p class="muted">Mera Hisab Pro — mobile-first HTML preview. Is preview ko Chrome mein kholkar features check karo. APK banane se pehle tumhari approval ke baad project ZIP mein Android/WebView setup aur instructions add kiye ja sakte hain.</p></div>
+</section>
+</div>
+
+<nav class="nav">
+  <button class="active" data-screen="home"><b>⌂</b>Home</button>
+  <button data-screen="hisab"><b>⇄</b>Hisab</button>
+  <button data-screen="report"><b>▤</b>Report</button>
+  <button data-screen="backup"><b>💾</b>Backup</button>
+</nav>
+
+<div class="modalback" id="modalBack" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+ <div class="modal">
+  <div class="modalhead"><h2 id="modalTitle">Nayi entry</h2><button class="close" id="closeModal" aria-label="Band karo">✕</button></div>
+  <form id="entryForm">
+   <div class="formgrid">
+    <div class="formfield"><label>Entry type *</label><select class="field" id="entryType" required><option value="income">Income</option><option value="expense">Kharcha</option><option value="game">Game earning</option><option value="borrow">Udhar lena</option><option value="lend">Udhar dena</option><option value="repay">Udhar chukana</option></select></div>
+    <div class="formfield"><label>Amount (₹) *</label><input class="field" id="entryAmount" type="number" min="0.01" step="0.01" placeholder="Jaise 500" required></div>
+    <div class="formfield"><label>Naam / kis se / kisko</label><input class="field" id="entryName" maxlength="80" placeholder="Naam likho"></div>
+    <div class="formfield"><label>Date *</label><input class="field" id="entryDate" type="date" required></div>
+    <div class="formfield"><label>Payment status</label><select class="field" id="entryStatus"><option value="paid">Paid / Mil gaya</option><option value="pending">Pending / Baaki</option><option value="partial">Partial / Kuch mila</option></select></div>
+    <div class="formfield" id="paidWrap"><label>Paid amount (₹)</label><input class="field" id="entryPaid" type="number" min="0" step="0.01" placeholder="0"></div>
+    <div class="formfield"><label>Payment mode *</label><select class="field" id="entryPaymentMode" required><option value="cash">Cash</option><option value="upi">UPI / Online</option><option value="bank">Bank transfer</option><option value="card">Card</option><option value="other">Other</option></select></div>
+    <div class="formfield" id="upiAppWrap"><label>UPI app</label><select class="field" id="entryUpiApp"><option value="">App select karo</option></select></div>
+    <div class="formfield full hidden" id="customUpiWrap"><label>Apna naya UPI app add karo</label><div class="row"><input class="field" id="newUpiApp" maxlength="50" placeholder="Jaise Naya UPI app" aria-label="Naye UPI app ka naam"><button class="secondary" type="button" id="addUpiAppBtn">+ Add app</button></div><div class="muted" style="margin-top:6px;font-size:12px">Naya naam isi browser mein save rahega.</div></div>
+    <div class="formfield full" id="utrWrap"><label>UTR / UPI Transaction ID</label><input class="field" id="entryUtr" maxlength="100" placeholder="UTR ya transaction reference manually likho"></div>
+    <div class="formfield full"><label>Note / detail</label><textarea class="field" id="entryNote" rows="2" maxlength="300" placeholder="Kis liye entry hai?"></textarea></div>
+   </div>
+   <div class="notice" id="formHelp">Income aur game earning aamdani mein count hogi. Game ka kharcha normal kharche mein bhi count hoga.</div>
+   <div class="actions"><button class="primary" type="submit" id="saveEntry">Entry save karo</button><button class="secondary" type="button" id="cancelEntry">Cancel</button></div>
+  </form>
+ </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+const KEY='meraHisabProPreview_v1';
+const UPI_KEY='meraHisabProCustomUpiApps_v1';
+const BUILTIN_UPI_APPS=['Google Pay','PhonePe','Paytm','BHIM','Other UPI app'];
+let customUpiApps=[];
+const types={income:{label:'Income',icon:'💰',color:'green'},expense:{label:'Kharcha',icon:'🛍️',color:'red'},game:{label:'Game earning',icon:'🎮',color:'purple'},borrow:{label:'Udhar lena',icon:'🤝',color:'yellow'},lend:{label:'Udhar dena',icon:'💸',color:'yellow'},repay:{label:'Udhar chukana',icon:'🔄',color:'yellow'}};
+let entries=[],editId=null;
+const today=()=>new Date().toISOString().slice(0,10);
+const money=n=>'₹'+(Number(n)||0).toLocaleString('en-IN',{maximumFractionDigits:2});
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+function toast(msg){const t=$('toast');t.textContent=msg;t.style.display='block';clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.style.display='none',2400)}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(entries));}catch(e){toast('Browser storage mein save nahi ho paya. Backup lein.')}render()}
+function load(){try{const v=JSON.parse(localStorage.getItem(KEY)||'[]');entries=Array.isArray(v)?v.filter(x=>x&&x.id&&types[x.type]&&Number.isFinite(Number(x.amount))):[]}catch(e){entries=[]}try{const a=JSON.parse(localStorage.getItem(UPI_KEY)||'[]');customUpiApps=Array.isArray(a)?a.filter(x=>typeof x==='string'&&x.trim()&&!BUILTIN_UPI_APPS.some(b=>b.toLowerCase()===x.trim().toLowerCase())).map(x=>x.trim()):[]}catch(e){customUpiApps=[]}populateUpiApps() }
+function populateUpiApps(selected=''){const select=$('entryUpiApp');if(!select)return;select.replaceChildren(new Option('App select karo',''));[...BUILTIN_UPI_APPS,...customUpiApps].forEach(name=>select.add(new Option(name,name)));if(selected)select.value=selected}
+function addCustomUpiApp(){const input=$('newUpiApp'),name=input.value.trim();if(!name){toast('Pehle app ka naam likho.');input.focus();return}if([...BUILTIN_UPI_APPS,...customUpiApps].some(x=>x.toLowerCase()===name.toLowerCase())){toast('Yeh app pehle se list mein hai.');return}customUpiApps.push(name);try{localStorage.setItem(UPI_KEY,JSON.stringify(customUpiApps))}catch(e){customUpiApps.pop();toast('App save nahi hua. Browser storage check karo.');return}populateUpiApps(name);input.value='';toast(name+' app add aur save ho gaya.')}
+function paidAmount(e){return e.status==='paid'?Number(e.amount):Math.min(Number(e.amount),Math.max(0,Number(e.paid)||0))}
+function outstanding(e){return Math.max(0,Number(e.amount)-paidAmount(e))}
+function isDebt(e){return e.type==='borrow'||e.type==='lend'}
+function totals(list=entries){
+ let income=0,expense=0,gameIncome=0,gameExpense=0,receive=0,pay=0;
+ list.forEach(e=>{const amt=Number(e.amount)||0;
+  if(e.type==='income')income+=amt;
+  if(e.type==='game')gameIncome+=amt;
+  if(e.type==='expense')expense+=amt;
+  if(e.type==='borrow')receive+=outstanding(e);
+  if(e.type==='lend')pay+=outstanding(e);
+  if(e.type==='repay') { /* repayment is recorded for history; linked debt tracking is not automatic */ }
+ });
+ // Game earning is included in income total; game spending is tracked via game expense note/type not duplicated.
+ return {income:income+gameIncome,regularIncome:income,gameIncome,expense,gameExpense,receive,pay,balance:income+gameIncome-expense};
+}
+function statusLabel(s){return {paid:'Paid',partial:'Partial',pending:'Pending'}[s]||s}
+function txHTML(e){
+ const t=types[e.type],amount=Number(e.amount)||0;
+ let sign=(e.type==='income'||e.type==='game'||e.type==='borrow')?'+':e.type==='expense'||e.type==='lend'||e.type==='repay'?'−':'';
+ let amtClass=(e.type==='income'||e.type==='game')?'green':(e.type==='expense'?'red':'yellow');
+ const paymentLabel={cash:'Cash',upi:'UPI / Online',bank:'Bank transfer',card:'Card',other:'Other'}[e.paymentMode]||'Payment mode not set';
+ const paymentMeta=[paymentLabel,e.paymentMode==='upi'?(e.upiApp||'UPI app not set'):'',e.utr?'UTR: '+e.utr:''].filter(Boolean).join(' · ');
+ const meta=[e.date||'',t.label,statusLabel(e.status),e.name||''].filter(Boolean).join(' · ');
+ return `<div class="transaction"><div class="txicon">${t.icon}</div><div class="txmain"><div class="txname">${esc(e.name||t.label)}</div><div class="txmeta">${esc(meta)}${e.note?' · '+esc(e.note):''}</div><div class="txmeta">${esc(paymentMeta)}</div></div><div style="text-align:right"><div class="txamount ${amtClass}">${sign}${money(amount)}</div><div class="row" style="justify-content:flex-end;gap:4px"><button class="smallbtn" data-edit="${esc(e.id)}">Edit</button><button class="smallbtn" data-delete="${esc(e.id)}">Delete</button></div></div></div>`;
+}
+function filtered(search,type,status,from,to){
+ const q=(search||'').trim().toLowerCase();
+ return entries.filter(e=>{
+  const blob=[e.name,e.note,e.amount,e.date,types[e.type]?.label,e.status,e.paymentMode,e.upiApp,e.utr].join(' ').toLowerCase();
+  return (!q||blob.includes(q))&&(type==='all'||e.type===type)&&(status==='all'||e.status===status)&&(!from||e.date>=from)&&(!to||e.date<=to);
+ }).sort((a,b)=>(b.date||'').localeCompare(a.date||'')||String(b.id).localeCompare(String(a.id)));
+}
+function listHTML(list,container){$(container).innerHTML=list.length?list.map(txHTML).join(''):'<div class="empty">Koi entry nahi mili. Search badal kar dekho ya nayi entry add karo.</div>'}
+function renderHome(){
+ const t=totals(),day=entries.filter(e=>e.date===today()),td=totals(day);
+ $('totalBalance').textContent=money(t.balance);$('totalIncome').textContent=money(t.income);$('totalExpense').textContent=money(t.expense);
+ $('totalDebt').textContent=money(t.receive+t.pay);$('todayIncome').textContent=money(td.income);$('todayExpense').textContent=money(td.expense);
+ $('toReceive').textContent=money(t.receive);$('toPay').textContent=money(t.pay);
+ listHTML(filtered($('homeSearch').value,$('homeType').value,$('homeStatus').value,'','').slice(0,12),'homeTransactions');
+}
+function renderHisab(){listHTML(filtered($('hisabSearch').value,$('hisabType').value,$('hisabStatus').value,$('fromDate').value,$('toDate').value),'hisabTransactions')}
+function reportList(){
+ const from=$('reportFrom').value,to=$('reportTo').value;
+ return entries.filter(e=>(!from||e.date>=from)&&(!to||e.date<=to));
+}
+function renderReport(){
+ const list=reportList(),t=totals(list);
+ const gameIn=list.filter(e=>e.type==='game').reduce((s,e)=>s+Number(e.amount),0);
+ const gameOut=list.filter(e=>e.type==='expense'&&/game/i.test((e.note||'')+' '+(e.name||''))).reduce((s,e)=>s+Number(e.amount),0);
+ const cards=[['Total income',t.income,'green'],['Normal income',t.regularIncome,'green'],['Total kharcha',t.expense,'red'],['Game earning',gameIn,'purple'],['Mujhe lene hain',t.receive,'yellow'],['Mujhe dene hain',t.pay,'yellow'],['Net balance',t.balance,t.balance>=0?'green':'red'],['Game net',gameIn-gameOut,(gameIn-gameOut)>=0?'green':'red']];
+ $('reportCards').innerHTML=cards.map(c=>`<div class="reportbox"><div class="rlabel">${c[0]}</div><div class="rnum ${c[2]}">${money(c[1])}</div></div>`).join('');
+ $('gameReport').innerHTML=`<div class="reportbox"><div class="rlabel">Game se total earning</div><div class="rnum purple">${money(gameIn)}</div><div class="rlabel" style="margin-top:12px">Game note/name mein “game” likhkar darj kharcha</div><div class="rnum red">${money(gameOut)}</div><div class="bartrack"><div class="barfill" style="width:${gameIn+gameOut?Math.min(100,gameIn/(gameIn+gameOut)*100):0}%"></div></div><div class="notice">Game ka kharcha count karne ke liye Kharcha entry ke naam ya note mein “game” likho.</div></div>`;
+ const debts=list.filter(e=>e.type==='borrow'||e.type==='lend').sort((a,b)=>(a.date||'').localeCompare(b.date||''));
+ $('debtReport').innerHTML=debts.length?debts.map(e=>`<div class="transaction"><div class="txicon">${e.type==='borrow'?'🤝':'💸'}</div><div class="txmain"><div class="txname">${esc(e.name||'Naam nahi diya')}</div><div class="txmeta">${types[e.type].label} · ${esc(e.date)} · ${statusLabel(e.status)}</div></div><div class="txamount yellow">${money(outstanding(e))}<div class="txmeta">baaki</div></div></div>`).join(''):'<div class="empty">Is date range mein udhar ki entry nahi hai.</div>';
+}
+function render(){renderHome();renderHisab();renderReport()}
+function openModal(type='income',id=null){
+ editId=id;const e=id?entries.find(x=>x.id===id):null;
+ $('entryForm').reset();$('entryType').value=e?e.type:type;$('entryAmount').value=e?e.amount:'';$('entryName').value=e?e.name||'':'';$('entryDate').value=e?e.date:today();$('entryStatus').value=e?e.status:'paid';$('entryPaid').value=e?(e.paid??''):'';$('entryNote').value=e?e.note||'':'';
+ $('entryPaymentMode').value=e?(e.paymentMode||'cash'):'cash';populateUpiApps(e?e.upiApp||'':'');$('entryUtr').value=e?e.utr||'':'';
+ $('modalTitle').textContent=e?'Entry edit karo':'Nayi '+(types[type]?.label||'entry');$('saveEntry').textContent=e?'Changes save karo':'Entry save karo';
+ updateFormHelp();$('modalBack').classList.add('open');setTimeout(()=>$('entryAmount').focus(),100);
+}
+function closeModal(){$('modalBack').classList.remove('open');editId=null}
+function updateFormHelp(){
+ const type=$('entryType').value;
+ $('formHelp').textContent=type==='borrow'?'Udhar lena: naam likho. Pending amount “Mujhe lene hain” mein count hoga.':type==='lend'?'Udhar dena: naam likho. Pending amount “Mujhe dene hain” mein count hoga.':type==='repay'?'Udhar chukana: yeh payment history mein save hogi. Related udhar entry ko alag edit karke baaki amount update karo.':type==='game'?'Game earning alag report hogi aur total income mein bhi include hogi.':type==='expense'?'Game ka kharcha alag report mein dikhane ke liye naam ya note mein “game” likho.':'Income aamdani mein count hogi. Amount aur date check karke save karo.';
+ $('paidWrap').classList.toggle('hidden',!['borrow','lend'].includes(type));
+ const isUpi=$('entryPaymentMode').value==='upi';
+ $('upiAppWrap').classList.toggle('hidden',!isUpi);$('customUpiWrap').classList.toggle('hidden',!isUpi);$('utrWrap').classList.toggle('hidden',!isUpi);
+}
+function handleSubmit(ev){
+ ev.preventDefault();const type=$('entryType').value,amount=Number($('entryAmount').value),status=$('entryStatus').value;
+ if(!Number.isFinite(amount)||amount<=0){toast('Sahi amount daalo.');return}
+ const paid=['borrow','lend'].includes(type)?(status==='paid'?amount:Math.min(amount,Math.max(0,Number($('entryPaid').value)||0))):amount;
+ const paymentMode=$('entryPaymentMode').value;
+ const obj={id:editId||uid(),type,amount,name:$('entryName').value.trim(),date:$('entryDate').value||today(),status,paid,note:$('entryNote').value.trim(),paymentMode,upiApp:paymentMode==='upi'?$('entryUpiApp').value:'',utr:paymentMode==='upi'?$('entryUtr').value.trim():''};
+ if(['borrow','lend'].includes(type)){if(paid>=amount)obj.status='paid';else if(paid>0)obj.status='partial';else obj.status='pending'}
+ if(editId){const i=entries.findIndex(x=>x.id===editId);if(i>=0)entries[i]=obj}else entries.push(obj);
+ save();closeModal();toast(editId?'Entry update ho gayi':'Entry save ho gayi');
+}
+function handleActionClick(ev){
+ const edit=ev.target.closest('[data-edit]'),del=ev.target.closest('[data-delete]');
+ if(edit){openModal(null,edit.dataset.edit)}
+ if(del){const e=entries.find(x=>x.id===del.dataset.delete);if(e&&confirm(`“${e.name||types[e.type].label}” ki ${money(e.amount)} entry delete karni hai?`)){entries=entries.filter(x=>x.id!==e.id);save();toast('Entry delete ho gayi')}}
+}
+document.querySelectorAll('[data-add]').forEach(b=>b.addEventListener('click',()=>openModal(b.dataset.add)));
+$('homeAdd').onclick=()=>openModal();$('hisabAdd').onclick=()=>openModal();
+$('closeModal').onclick=closeModal;$('cancelEntry').onclick=closeModal;$('modalBack').addEventListener('click',e=>{if(e.target===$('modalBack'))closeModal()});
+$('entryType').addEventListener('change',updateFormHelp);$('entryPaymentMode').addEventListener('change',updateFormHelp);$('entryForm').addEventListener('submit',handleSubmit);$('addUpiAppBtn').addEventListener('click',addCustomUpiApp);$('newUpiApp').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addCustomUpiApp()}});
+['homeSearch','homeType','homeStatus'].forEach(id=>$(id).addEventListener('input',renderHome));
+['hisabSearch','hisabType','hisabStatus','fromDate','toDate'].forEach(id=>$(id).addEventListener('input',renderHisab));
+document.addEventListener('click',e=>{if(e.target.closest('[data-edit],[data-delete]'))handleActionClick(e)});
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>{
+ document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x===b));
+ document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));$(''+b.dataset.screen+'Screen').classList.add('active');
+ if(b.dataset.screen==='report')renderReport();
+ window.scrollTo({top:0,behavior:'smooth'});
+}));
+$('reportMonth').onclick=()=>{const d=new Date(),start=new Date(d.getFullYear(),d.getMonth(),1);$('reportFrom').value=start.toISOString().slice(0,10);$('reportTo').value=today();renderReport()};
+$('reportAll').onclick=()=>{$('reportFrom').value='';$('reportTo').value='';renderReport()};
+$('reportFrom').onchange=renderReport;$('reportTo').onchange=renderReport;
+$('exportBtn').onclick=()=>{const backupText=JSON.stringify({app:'Mera Hisab Pro',version:1,exportedAt:new Date().toISOString(),entries},null,2);const filename='mera-hisab-backup-'+today()+'.json';if(window.AndroidBridge&&typeof AndroidBridge.saveBackup==='function'){AndroidBridge.saveBackup(backupText,filename);return}const blob=new Blob([backupText],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=filename;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(a.href);toast('Backup download shuru ho gaya')};
+$('importBtn').onclick=()=>$('importFile').click();
+$('importFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const data=JSON.parse(await f.text()),arr=Array.isArray(data)?data:data.entries;if(!Array.isArray(arr)||arr.some(x=>!x||!types[x.type]||!Number.isFinite(Number(x.amount))||Number(x.amount)<=0))throw Error('invalid');if(confirm(`Backup mein ${arr.length} entries hain. Current entries replace kar dein?`)){entries=arr.map(x=>({...x,id:String(x.id||uid()),date:String(x.date||today()),status:['paid','partial','pending'].includes(x.status)?x.status:'paid',paid:Number(x.paid)||0,name:String(x.name||''),note:String(x.note||''),paymentMode:['cash','upi','bank','card','other'].includes(x.paymentMode)?x.paymentMode:'cash',upiApp:String(x.upiApp||''),utr:String(x.utr||'')}));save();toast('Backup restore ho gaya')}}catch(err){alert('Backup file sahi nahi hai. App se download ki hui JSON backup file select karo.')}e.target.value=''};
+$('clearBtn').onclick=()=>{if(confirm('Kya tum pakka saara hisaab delete karna chahte ho? Pehle backup download kar lo.')){entries=[];save();toast('Saara data delete ho gaya')}};
+$('seedBtn').onclick=()=>{if(entries.length&&!confirm('Demo entries current hisaab ke saath add karni hain?'))return;const d=today();entries.push({id:uid(),type:'income',amount:2500,name:'Salary / kaam',date:d,status:'paid',paid:2500,note:'Demo entry'},{id:uid(),type:'expense',amount:450,name:'Grocery',date:d,status:'paid',paid:450,note:'Demo entry'},{id:uid(),type:'game',amount:300,name:'Game earning',date:d,status:'paid',paid:300,note:'Demo entry'},{id:uid(),type:'borrow',amount:1000,name:'Rahul',date:d,status:'partial',paid:400,note:'Demo udhar'},{id:uid(),type:'lend',amount:700,name:'Aman',date:d,status:'pending',paid:0,note:'Demo udhar'});save();toast('Demo entries add ho gayi')};
+load();render();
+})();
+</script>
+</body>
+</html>
