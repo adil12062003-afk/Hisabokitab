@@ -1,11 +1,7 @@
-
 name: Build Mera Hisab Pro APK
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - '.github/workflows/main.yml'
 
 jobs:
   build:
@@ -24,12 +20,17 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
+      - name: Accept Android SDK licenses
+        run: yes | sdkmanager --licenses || true
+
+      - name: Install Android SDK packages
+        run: sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+
       - name: Check project files
         run: |
-          echo "Repository files:"
           ls -la
-          echo "Checking Gradle project..."
           test -f settings.gradle || test -f settings.gradle.kts
+          test -f gradlew
 
       - name: Build APK
         run: |
